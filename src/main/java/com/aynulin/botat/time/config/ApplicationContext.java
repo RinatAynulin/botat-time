@@ -9,7 +9,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
 @ComponentScan(basePackages = {
-
+        "com.aynulin.botat.time.service",
 })
 @Import({PersistenceContext.class, WebAppContext.class})
 @PropertySource("classpath:application.properties")

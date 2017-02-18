@@ -20,11 +20,12 @@ import java.util.Properties;
 
 @Configuration
 @EnableJpaRepositories(basePackages = {
-
+        "com.aynulin.botat.time.repository",
 })
 @EnableTransactionManagement
 public class PersistenceContext {
     private static final String[] PROPERTY_PACKAGES_TO_SCAN = {
+            "com.aynulin.botat.time.model",
     };
 
     protected static final String PROPERTY_NAME_DATABASE_DRIVER = "db.driver";
