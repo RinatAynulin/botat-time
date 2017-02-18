@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @Aynulin on 18.02.2017.
@@ -23,8 +24,8 @@ public class RepositoryForecastService implements ForecastService {
     }
 
     @Override
-    public Collection<Forecast> getNextFourteenDaysForecast(Long cityId) {
+    public List<Forecast> getNextFourteenDaysForecast(Long cityId) {
         Pageable limit = new PageRequest(0, 14);
-        return forecastRepository.getLastForecastsForCity(cityId, limit);
+        return forecastRepository.findByCityId(cityId, limit);
     }
 }

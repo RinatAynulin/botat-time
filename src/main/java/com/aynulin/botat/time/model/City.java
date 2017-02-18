@@ -2,6 +2,7 @@ package com.aynulin.botat.time.model;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @Aynulin on 18.02.2017.
@@ -17,7 +18,7 @@ public class City {
     private String name;
 
     @OneToMany(mappedBy = "city")
-    private HashSet<Forecast> forecasts;
+    private Set<Forecast> forecasts;
 
     public City() {
     }
@@ -30,7 +31,7 @@ public class City {
         return name;
     }
 
-    public HashSet<Forecast> getForecasts() {
+    public Set<Forecast> getForecasts() {
         return forecasts;
     }
 
