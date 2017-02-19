@@ -68,7 +68,6 @@ public class ApiForecastService {
                 JsonNode node = nodes.next();
                 Forecast forecast = createForecastFromNode(node);
                 result.add(forecast);
-                System.out.println(node);
                 moveToNextDay(nodes); // get only one node per day
             }
             return result;
@@ -108,8 +107,4 @@ public class ApiForecastService {
         return forecast;
     }
 
-    public static void main(String[] args) {
-        ApiForecastService service = new ApiForecastService();
-        System.out.println(service.getNextFiveDaysForecast(DEFAULT_CITY_ID));
-    }
 }

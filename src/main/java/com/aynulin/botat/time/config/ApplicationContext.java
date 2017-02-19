@@ -11,7 +11,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 @ComponentScan(basePackages = {
         "com.aynulin.botat.time.service",
 })
-@Import({PersistenceContext.class, WebAppContext.class})
+@Import({PersistenceContext.class, WebAppContext.class, QuartzContext.class})
 @PropertySource("classpath:application.properties")
 public class ApplicationContext {
     @Bean
