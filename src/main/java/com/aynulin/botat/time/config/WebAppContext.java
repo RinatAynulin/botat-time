@@ -10,6 +10,9 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.UrlBasedViewResolver;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesView;
 
 /**
  * @Aynulin on 18.02.2017.
@@ -21,8 +24,8 @@ import org.springframework.web.servlet.view.JstlView;
 })
 @EnableWebMvc
 public class WebAppContext extends WebMvcConfigurerAdapter {
-    private static final String VIEW_RESOLVER_PREFIX = "/WEB-INF/views/";
-    private static final String VIEW_RESOLVER_SUFFIX = ".jsp";
+//    private static final String VIEW_RESOLVER_PREFIX = "/WEB-INF/views/";
+//    private static final String VIEW_RESOLVER_SUFFIX = ".jsp";
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -34,14 +37,30 @@ public class WebAppContext extends WebMvcConfigurerAdapter {
         configurer.enable();
     }
 
+//    @Bean
+//    public ViewResolver viewResolver() {
+//        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+//
+//        viewResolver.setViewClass(JstlView.class);
+//        viewResolver.setPrefix(VIEW_RESOLVER_PREFIX);
+//        viewResolver.setSuffix(VIEW_RESOLVER_SUFFIX);
+//
+//        return viewResolver;
+//    }
+
+    @Bean
+    public TilesConfigurer tilesConfigurer() {
+        TilesConfigurer tiles = new TilesConfigurer();
+        tiles.setDefinitions("/WEB-INF/layouts/tiles.xml",
+                "/WEB-INF/views/**/tiles.xml");
+        tiles.setCheckRefresh(true);
+        return tiles;
+    }
+
     @Bean
     public ViewResolver viewResolver() {
-        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-
-        viewResolver.setViewClass(JstlView.class);
-        viewResolver.setPrefix(VIEW_RESOLVER_PREFIX);
-        viewResolver.setSuffix(VIEW_RESOLVER_SUFFIX);
-
+        UrlBasedViewResolver viewResolver = new UrlBasedViewResolver();
+        viewResolver.setViewClass(TilesView.class);
         return viewResolver;
     }
 }
