@@ -15,7 +15,7 @@ public class Forecast {
     private Long id;
 
     @Column(name = "date")
-    private int date; // unix time
+    private Long date; // unix time
 
     @Column(name = "temp_day")
     private BigDecimal tempDay; // day temperature
@@ -52,7 +52,7 @@ public class Forecast {
         return id;
     }
 
-    public int getDate() {
+    public long getDate() {
         return date;
     }
 
@@ -92,6 +92,46 @@ public class Forecast {
         return city;
     }
 
+    public void setDate(Long date) {
+        this.date = date;
+    }
+
+    public void setTempDay(BigDecimal tempDay) {
+        this.tempDay = tempDay;
+    }
+
+    public void setTempMin(BigDecimal tempMin) {
+        this.tempMin = tempMin;
+    }
+
+    public void setTempMax(BigDecimal tempMax) {
+        this.tempMax = tempMax;
+    }
+
+    public void setHumidity(BigDecimal humidity) {
+        this.humidity = humidity;
+    }
+
+    public void setPressure(BigDecimal pressure) {
+        this.pressure = pressure;
+    }
+
+    public void setWeatherId(int weatherId) {
+        this.weatherId = weatherId;
+    }
+
+    public void setWeatherMain(String weatherMain) {
+        this.weatherMain = weatherMain;
+    }
+
+    public void setWeatherDescription(String weatherDescription) {
+        this.weatherDescription = weatherDescription;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -99,9 +139,9 @@ public class Forecast {
 
         Forecast forecast = (Forecast) o;
 
-        if (date != forecast.date) return false;
         if (weatherId != forecast.weatherId) return false;
         if (id != null ? !id.equals(forecast.id) : forecast.id != null) return false;
+        if (date != null ? !date.equals(forecast.date) : forecast.date != null) return false;
         if (tempDay != null ? !tempDay.equals(forecast.tempDay) : forecast.tempDay != null) return false;
         if (tempMin != null ? !tempMin.equals(forecast.tempMin) : forecast.tempMin != null) return false;
         if (tempMax != null ? !tempMax.equals(forecast.tempMax) : forecast.tempMax != null) return false;
@@ -118,7 +158,7 @@ public class Forecast {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + date;
+        result = 31 * result + (date != null ? date.hashCode() : 0);
         result = 31 * result + (tempDay != null ? tempDay.hashCode() : 0);
         result = 31 * result + (tempMin != null ? tempMin.hashCode() : 0);
         result = 31 * result + (tempMax != null ? tempMax.hashCode() : 0);
